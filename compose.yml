@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: airbnb-with-tdd-app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - airbnb-with-tdd-network
+
+  db:
+    image: mysql:8.4.3
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: airbnb-with-tdd
+    networks:
+      - airbnb-with-tdd-network
+
+networks:
+  airbnb-with-tdd-network:
+    driver: bridge
