@@ -1,7 +1,7 @@
 services:
   app:
     build:
-      context: .
+      context: .docker
       dockerfile: Dockerfile
     container_name: airbnb-with-tdd-app
     ports:
